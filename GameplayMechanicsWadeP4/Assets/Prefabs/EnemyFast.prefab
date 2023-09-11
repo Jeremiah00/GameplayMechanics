@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 422663051426260084}
   - component: {fileID: 2240669027095005629}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: EnemyFast
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9a9186e519857864380b6bda9f6ac441, type: 2}
+  - {fileID: 2100000, guid: 44e0172c8cba1fa409453f7b50060fbe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -116,7 +116,7 @@ Rigidbody:
   m_GameObject: {fileID: 3417239143836155691}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 3
+  m_Drag: 8
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -146,4 +146,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c6fd7101941c0c4fb5e06030a29b96e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 6

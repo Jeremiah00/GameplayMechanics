@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using static PowerUp;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,11 +14,17 @@ public class PlayerController : MonoBehaviour
     public bool hasPowerup;
     float powerStrength = 120.0f;
     public GameObject powerupIndicator;
+
+    public PowerUpType currentPowerUp = PowerUpType.None; 
+    public GameObject rocketPrefab; 
+    private GameObject tmpRocket; 
+    private Coroutine powerupCountdown;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         focalpoint = GameObject.Find("Focal Point");
     }
+
 
     // Update is called once per frame
     void Update()
