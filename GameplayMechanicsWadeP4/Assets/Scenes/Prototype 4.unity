@@ -284,7 +284,9 @@ MonoBehaviour:
   - {fileID: 3417239143836155691, guid: 7e7371859472bbd439af2e278d1cc126, type: 3}
   enemyCount: 0
   waveNumber: 1
-  powerupPrefab: {fileID: 8057906727681546100, guid: ea70ad0a9e21f7e4598615720157251a, type: 3}
+  powerupPrefabs:
+  - {fileID: 8057906727681546100, guid: ea70ad0a9e21f7e4598615720157251a, type: 3}
+  - {fileID: 8057906727681546100, guid: f53ab328ce97e0441970de86e96befdc, type: 3}
 --- !u!4 &451403501
 Transform:
   m_ObjectHideFlags: 0
@@ -450,7 +452,7 @@ MonoBehaviour:
   hasPowerup: 0
   powerupIndicator: {fileID: 907814851}
   currentPowerUp: 0
-  rocketPrefab: {fileID: 0}
+  rocketPrefab: {fileID: 1054016241477722455, guid: 7a3572b17bdd65e45a55aedff8b1ee2b, type: 3}
 --- !u!1 &907814851 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1887969965315444, guid: 1656aec7f2b3ffe45a91801f58b00253, type: 3}
@@ -763,15 +765,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4740640696147648, guid: 1656aec7f2b3ffe45a91801f58b00253, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.6816425
+      value: 7.887529
       objectReference: {fileID: 0}
     - target: {fileID: 4740640696147648, guid: 1656aec7f2b3ffe45a91801f58b00253, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.6816425
+      value: 7.887529
       objectReference: {fileID: 0}
     - target: {fileID: 4740640696147648, guid: 1656aec7f2b3ffe45a91801f58b00253, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2.6816425
+      value: 7.887529
       objectReference: {fileID: 0}
     - target: {fileID: 4740640696147648, guid: 1656aec7f2b3ffe45a91801f58b00253, type: 3}
       propertyPath: m_LocalPosition.x

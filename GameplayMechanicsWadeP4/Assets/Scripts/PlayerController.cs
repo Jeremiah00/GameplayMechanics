@@ -34,6 +34,10 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(Vector3.forward * fowardInput * speed);
         rb.AddForce(Vector3.right * horizontalInput * speed);
         powerupIndicator.transform.position = transform.position + new Vector3(0, -0.5f, 0);
+        if (currentPowerUp == PowerUpType.Rockets && Input.GetKeyDown(KeyCode.F))
+        {
+            LaunchRockets();
+        }
         
     }
 
@@ -42,20 +46,35 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Powerup"))
         {
             hasPowerup = true;
-            Destroy(other.gameObject);
-            StartCoroutine(PowerupCountdownRoutine());
+            currentPowerUp = other.gameObject.GetComponent<PowerUp>().powerUpType;
             powerupIndicator.gameObject.SetActive(true);
+            Destroy(other.gameObject);
+            if(powerupCountdown != null)
+            {
+                StopCoroutine(powerupCountdown);
+            }
+            powerupCountdown = StartCoroutine(PowerupCountdownRoutine());
+            
         }
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Enemy") && hasPowerup)
+        if(collision.gameObject.CompareTag("Enemy") && currentPowerUp == PowerUpType.PushBack)
         {
             Rigidbody enemyRb = collision.gameObject.GetComponent<Rigidbody>();
             Vector2 awayFromPlayer = (collision.gameObject.transform.position - transform.position);
 
-            Debug.Log("Collided with " + collision.gameObject.name + " with powerup set to " + hasPowerup);
+            Debug.Log("Player collided with " + collision.gameObject.name + " with powerup set to " + currentPowerUp.ToString());
             enemyRb.AddForce(awayFromPlayer * powerStrength, ForceMode.Impulse);
+        }
+    }
+    void LaunchRockets()
+    {
+        foreach(var enemy in FindObjectsOfType<Enemy>())
+        {
+            tmpRocket = Instantiate(rocketPrefab, transform.position + Vector3.up, Quaternion.identity);
+            tmpRocket.GetComponent<RocketBehaviour>().Fire(enemy.transform);
+
         }
     }
 
@@ -63,6 +82,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(7);
         hasPowerup = false;
+        currentPowerUp = PowerUpType.None;
         powerupIndicator.gameObject.SetActive(false);
     }
 }
