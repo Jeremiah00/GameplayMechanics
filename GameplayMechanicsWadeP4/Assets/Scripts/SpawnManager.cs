@@ -10,6 +10,26 @@ public class SpawnManager : MonoBehaviour
     public int enemyCount;
     public int waveNumber = 3;
     public GameObject[] powerupPrefabs;
+    public GameObject bossPrefab; 
+    public GameObject[] miniEnemyPrefabs; 
+    public int bossRound;
+
+    void SpawnBossWave (int currentRound)
+    {
+        int miniEnemysToSpawn;
+        if (bossRound != 0)
+        {
+            miniEnemysToSpawn = currentRound / bossRound;
+        }
+    }
+    public void SpawnMiniEnemy(int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            int randomMini = Random.Range(0, miniEnemyPrefabs.Length);
+            Instantiate(miniEnemyPrefabs[randomMini], GenerateSpawnPosition(), miniEnemyPrefabs[randomMini].transform.rotation);
+        }
+    }
     void Start()
     {
         int randomPowerUp = Random.Range(0, powerupPrefabs.Length);

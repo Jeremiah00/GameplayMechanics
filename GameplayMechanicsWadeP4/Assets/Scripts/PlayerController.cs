@@ -19,6 +19,15 @@ public class PlayerController : MonoBehaviour
     public GameObject rocketPrefab; 
     private GameObject tmpRocket; 
     private Coroutine powerupCountdown;
+
+    public float hangTime;
+    public float smashSpeed;
+    public float explosionForce;
+    public float explosionRadius;
+
+    bool smashing = false;
+    float floorY;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -38,7 +47,13 @@ public class PlayerController : MonoBehaviour
         {
             LaunchRockets();
         }
-        
+
+        if (currentPowerUp == PowerUpType.Smash && Input.GetKeyDown(KeyCode.Space) && !smashing) 
+        { 
+            smashing = true; 
+            StartCoroutine(Smash()); 
+        }
+
     }
 
     public void OnTriggerEnter(Collider other)
@@ -84,5 +99,33 @@ public class PlayerController : MonoBehaviour
         hasPowerup = false;
         currentPowerUp = PowerUpType.None;
         powerupIndicator.gameObject.SetActive(false);
+    }
+
+    IEnumerator Smash()
+    {
+        var enemies = FindObjectsOfType<Enemy>();
+
+        floorY = transform.position.y;
+
+        float jumpTime = Time.time + hangTime;
+        while (Time.time < jumpTime)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, smashSpeed);
+            yield return null;
+        }
+
+        while(transform.position.y > floorY)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, -smashSpeed * 2);
+            yield return null;
+        }
+
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            if (enemies[i] != null)
+            {
+                enemies[i].GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRadius, 0.0f, ForceMode.Impulse);
+            }
+        }
     }
 }

@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
-    public enum PowerUpType {None, PushBack, Rockets}
+    public enum PowerUpType {None, PushBack, Rockets, Smash}
     public PowerUpType powerUpType;
 }
