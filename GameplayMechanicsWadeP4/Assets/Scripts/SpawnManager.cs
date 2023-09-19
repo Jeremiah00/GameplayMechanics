@@ -63,7 +63,14 @@ public class SpawnManager : MonoBehaviour
             int randomPowerUp = Random.Range(0, powerupPrefabs.Length);
             Instantiate(powerupPrefabs[randomPowerUp], GenerateSpawnPosition(), powerupPrefabs[randomPowerUp].transform.rotation);
             waveNumber++;
-            SpawnEnemyWave(waveNumber);
+            if (waveNumber % bossRound == 0)
+            {
+                SpawnBossWave(waveNumber);
+            }
+            else
+            {
+                SpawnEnemyWave(waveNumber);
+            }
         }
     }
 }

@@ -82,6 +82,12 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Player collided with " + collision.gameObject.name + " with powerup set to " + currentPowerUp.ToString());
             enemyRb.AddForce(awayFromPlayer * powerStrength, ForceMode.Impulse);
         }
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+            Rigidbody enemyRb = collision.gameObject.GetComponent<Rigidbody>();
+            Vector2 awayFromPlayer = (collision.gameObject.transform.position - transform.position);
+            enemyRb.AddForce(awayFromPlayer * 10f, ForceMode.Impulse);
+        }
     }
     void LaunchRockets()
     {

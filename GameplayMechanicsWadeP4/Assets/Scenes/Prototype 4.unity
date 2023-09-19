@@ -288,9 +288,11 @@ MonoBehaviour:
   - {fileID: 8057906727681546100, guid: ea70ad0a9e21f7e4598615720157251a, type: 3}
   - {fileID: 8057906727681546100, guid: f53ab328ce97e0441970de86e96befdc, type: 3}
   - {fileID: 8057906727681546100, guid: 6b46522fccd3b574bb11dd8cfee10730, type: 3}
-  bossPrefab: {fileID: 0}
-  miniEnemyPrefabs: []
-  bossRound: 0
+  bossPrefab: {fileID: 1858030105587289935, guid: 7c4670aba81687b4fb3697fe0bce7ca0, type: 3}
+  miniEnemyPrefabs:
+  - {fileID: 7137805918057801758, guid: 74f2df0b132369444a9dd887813f21c3, type: 3}
+  - {fileID: 8741232452824627111, guid: f41af47804a140342878e4bed4672968, type: 3}
+  bossRound: 2
 --- !u!4 &451403501
 Transform:
   m_ObjectHideFlags: 0
@@ -395,7 +397,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 98bd67faa9683ef409deaed86acfbcff, type: 2}
+  - {fileID: 2100000, guid: 4c97b24d72ebade4d98acaf3b75c90ee, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -435,7 +437,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.6391048, y: 1.55, z: 1.6391125}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -456,7 +458,7 @@ MonoBehaviour:
   hasPowerup: 0
   powerupIndicator: {fileID: 907814851}
   currentPowerUp: 0
-  rocketPrefab: {fileID: 0}
+  rocketPrefab: {fileID: 1054016241477722455, guid: 7a3572b17bdd65e45a55aedff8b1ee2b, type: 3}
   hangTime: 0.1
   smashSpeed: 100
   explosionForce: 120
@@ -773,15 +775,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4740640696147648, guid: 1656aec7f2b3ffe45a91801f58b00253, type: 3}
       propertyPath: m_LocalScale.x
-      value: 7.887529
+      value: 4.6805387
       objectReference: {fileID: 0}
     - target: {fileID: 4740640696147648, guid: 1656aec7f2b3ffe45a91801f58b00253, type: 3}
       propertyPath: m_LocalScale.y
-      value: 7.887529
+      value: 4.6805387
       objectReference: {fileID: 0}
     - target: {fileID: 4740640696147648, guid: 1656aec7f2b3ffe45a91801f58b00253, type: 3}
       propertyPath: m_LocalScale.z
-      value: 7.887529
+      value: 4.6805387
       objectReference: {fileID: 0}
     - target: {fileID: 4740640696147648, guid: 1656aec7f2b3ffe45a91801f58b00253, type: 3}
       propertyPath: m_LocalPosition.x
