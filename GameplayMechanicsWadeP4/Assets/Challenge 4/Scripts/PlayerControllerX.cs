@@ -7,6 +7,9 @@ public class PlayerControllerX : MonoBehaviour
     private Rigidbody playerRb;
     private float speed = 500;
     private GameObject focalPoint;
+    public ParticleSystem smokeParticle;
+    float boostSpeed = 1000;
+    private bool canBoost = true;
 
     public bool hasPowerup;
     public GameObject powerupIndicator;
@@ -20,6 +23,7 @@ public class PlayerControllerX : MonoBehaviour
     {
         playerRb = GetComponent<Rigidbody>();
         focalPoint = GameObject.Find("Focal Point");
+        smokeParticle = GameObject.Find("Smoke_Particle").GetComponent<ParticleSystem>();
     }
 
     void Update()
@@ -27,13 +31,23 @@ public class PlayerControllerX : MonoBehaviour
         // Add force to player in direction of the focal point (and camera)
         float verticalInput = Input.GetAxis("Vertical");
         playerRb.AddForce(focalPoint.transform.forward * verticalInput * speed * Time.deltaTime);
-        if (Input.GetKey(KeyCode.Space))
+        bool spacebarPressed = Input.GetKeyDown(KeyCode.Space);
+        if (spacebarPressed && canBoost)
         {
-            
+            playerRb.AddForce(focalPoint.transform.forward * boostSpeed * Time.deltaTime, ForceMode.Impulse);
+            StartCoroutine("SpeedBoostCooldown");
         }
+        // this means that we are currently boosting, so make smoke particle follow player
+        else if (canBoost == false)
+        {
+            float playerPosX = this.transform.position.x;
+            float playerPosZ = this.transform.position.z;
+            // make y position -1 so that it's at the bottom of the player
+            smokeParticle.transform.position = new Vector3(playerPosX, -1, playerPosZ);
 
-        // Set powerup indicator position to beneath player
-        powerupIndicator.transform.position = transform.position + new Vector3(0, -0.6f, 0);
+            // Set powerup indicator position to beneath player
+            powerupIndicator.transform.position = transform.position + new Vector3(0, -0.6f, 0);
+        }
 
     }
 
@@ -59,6 +73,17 @@ public class PlayerControllerX : MonoBehaviour
         yield return new WaitForSeconds(powerUpDuration);
         hasPowerup = false;
         powerupIndicator.SetActive(false);
+    }
+    IEnumerator SpeedBoostCooldown()
+    {
+        speed = 1000;
+        smokeParticle.Play();
+        yield return new WaitForSeconds(5);
+        smokeParticle.Stop();
+        speed = 500;   // back to the original speed
+        canBoost = false;
+        yield return new WaitForSeconds(5);
+        canBoost = true;
     }
 
     // If Player collides with enemy
